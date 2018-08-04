@@ -1,0 +1,13 @@
+app-layout{
+  width: 60%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  height: 93%;
+}
+
+@media screen and (max-width: 520px){
+  app-layout{
+    width: 80%;
+  }
+}

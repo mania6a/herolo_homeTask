@@ -1,0 +1,37 @@
+{
+  "books": [
+    {
+      "id": 123456,
+      "authorName": "Mark Twain",
+      "publishedDate": "12.10.2000",
+      "title": "Tom Soyer"
+    },
+    {
+      "id": 234567,
+      "authorName": "Theodore Dreiser",
+      "publishedDate": "10.01.2011",
+      "title": "@An A&merican tragedy!"
+    },
+    {
+      "id": 345678,
+      "authorName": "Jerome David Salinger",
+      "publishedDate": "10.02.2015",
+      "title": "The catcher in the rye"
+    },
+    {
+      "id": 456789,
+      "authorName": "Shakespeare William",
+      "publishedDate": "20.02.2013",
+      "title": "    Romeo and Juliet"
+    },
+    {
+      "id": 567890,
+      "authorName": "Dante Alighieri",
+      "publishedDate": "13.05.1995",
+      "title": "divine comedy"
+    }
+
+
+
+  ]
+}

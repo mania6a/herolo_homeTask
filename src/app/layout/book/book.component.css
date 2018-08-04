@@ -1,0 +1,37 @@
+.subCont{
+  display: flex;
+  flex-wrap: wrap;
+}
+p{
+  flex: 1;
+  text-align: left;
+}
+mat-card-header{
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+}
+span{
+  display: flex;
+}
+.title{
+  font-size: large;
+  font-weight: bold;
+}
+
+mat-card{
+  background-color: rgba(249, 249, 220, 0.7);
+}
+i:hover{
+  cursor: pointer;
+}
+@media screen and (max-width: 800px){
+  .subCont{
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 390px){
+  .title{
+    font-size: medium;
+  }
+}

@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title class="title">{{book.title | wordFormat}}</mat-card-title>
+    <span>
+    <i class="material-icons" (click)="openEdit()"
+       matTooltip="Edit">edit</i>
+    <i class="material-icons" (click)="delete()"
+       matTooltip="Delete">delete</i>
+    </span>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="subCont">
+      <p><strong>Author: </strong>{{book.authorName | wordFormat}}</p>
+      <p><strong>Published date: </strong>{{book.publishedDate}}</p>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-divider></mat-divider>

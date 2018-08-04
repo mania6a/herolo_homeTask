@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {EditDialogComponent} from '../edit-dialog/edit-dialog.component';
 import {MatDialog} from '@angular/material';
-import {Book} from '../../classes/book';
+import {Book} from '../../models/book';
 import {DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 @Component({

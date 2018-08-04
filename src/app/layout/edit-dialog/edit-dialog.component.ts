@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Book} from '../../classes/book';
+import {Book} from '../../models/book';
 
 @Component({
   selector: 'app-edit-dialog',

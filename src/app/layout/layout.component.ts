@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServerService} from '../services/server.service';
-import {Book} from '../classes/book';
+import {Book} from '../models/book';
 import {MatDialog, MatSnackBar} from '@angular/material';
 import {EditDialogComponent} from './edit-dialog/edit-dialog.component';
 

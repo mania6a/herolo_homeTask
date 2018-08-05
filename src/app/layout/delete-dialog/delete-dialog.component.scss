@@ -1,0 +1,8 @@
+@import "../../scss/placeholders";
+
+.btnCont{
+  @extend .flexDisplay;
+}
+h2, h3{
+  text-align: center;
+}

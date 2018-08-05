@@ -1,3 +1,5 @@
+$mainColor: blanchedalmond;
+$width: 100%;
 .cont{
   display: flex;
   flex-direction: column;
@@ -7,29 +9,30 @@
   overflow: auto;
 }
 h1{
-  color: blanchedalmond;
+  color: $mainColor;
   text-align: center;
 }
 app-book, .cont{
-  width: 100%;
+  width: $width;
+  :hover {
+  background-color: $mainColor;
+}
 }
 button{
-  border-radius: 50%;
+  border-radius: $width/2;
   position: fixed;
   left: 70vw;
   top: 90vh;
   outline: none;
-  background-color: blanchedalmond !important;
+  background-color: $mainColor !important;
 }
-
 i{
   color: black;
 }
-
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-thumb {
-  background: blanchedalmond;
+  background: $mainColor;
   border-radius: 10px;
 }

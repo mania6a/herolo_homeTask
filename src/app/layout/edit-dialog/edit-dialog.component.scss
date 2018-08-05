@@ -1,0 +1,8 @@
+@import "../../scss/placeholders";
+
+.btnCont{
+  @extend .flexDisplay;
+}
+mat-error{
+  font-size: xx-small;
+}

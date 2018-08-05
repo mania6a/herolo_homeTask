@@ -1,24 +1,23 @@
+@import "../../scss/placeholders";
+
 .subCont{
-  display: flex;
   flex-wrap: wrap;
 }
 p{
   flex: 1;
   text-align: left;
 }
-mat-card-header{
+.subCont, span {
   display: flex;
-  justify-content: space-between;
-  align-content: center;
 }
-span{
-  display: flex;
+mat-card-header{
+  @extend .flexDisplay;
+  align-content: center;
 }
 .title{
   font-size: large;
   font-weight: bold;
 }
-
 mat-card{
   background-color: rgba(249, 249, 220, 0.7);
 }

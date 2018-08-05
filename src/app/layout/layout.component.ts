@@ -7,7 +7,7 @@ import {EditDialogComponent} from './edit-dialog/edit-dialog.component';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.css']
+  styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
 

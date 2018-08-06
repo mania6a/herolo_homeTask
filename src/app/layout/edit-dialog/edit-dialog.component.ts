@@ -15,8 +15,9 @@ export class EditDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: Book) { }
 
   ngOnInit() {
-    const title = this.data ? this.transformWord(this.data.title) : '';
-    const author = this.data ? this.transformWord(this.data.authorName) : '';
+   // const title = this.data ? this.transformWord(this.data.title) : '';
+    const title = this.data ? this.data.title : '';
+    const author = this.data ? this.data.authorName : '';
     const d = new Date();
     if (this.data) {
       d.setDate(+this.data.publishedDate.split('.')[0]);
@@ -25,20 +26,33 @@ export class EditDialogComponent implements OnInit {
     }
     const date = this.data ? d : '';
     this.form = new FormGroup({
-      'title': new FormControl(title, [Validators.required]),
-      'authorName': new FormControl(author, [Validators.required]),
+      'title': new FormControl(title, [Validators.required,
+        this.notContLatin.bind(this)]),
+      'authorName': new FormControl(author, [Validators.required,
+        this.notContLatin.bind(this)]),
       'publishedDate': new FormControl(date, [Validators.required])
     });
   }
 
-  transformWord(title) {
+  notContLatin(word: FormControl) {
+    if (!word.value.match(/[A-Z, a-z]/g)) {
+      return {
+        'notLatin': true
+      };
+    }
+    return null;
+  }
+
+ /*
+    The method is used in case we want to see a correct title/ author name like with pipe
+    transformWord(title) {
     const wordArray = title.trim().split(' ');
     const res = wordArray.map(e => {
       const word = e.match(/[A-Z, a-z]/g).join('');
       return word.charAt(0).toUpperCase().concat(word.slice(1)).trim();
     });
     return res.join(' ');
-  }
+  }*/
 
   saveChanges() {
     const book = {
@@ -52,6 +66,7 @@ export class EditDialogComponent implements OnInit {
   }
 
   getErrorMessage(word) {
-    return this.form.get(word).hasError('required') ? 'A mandotatory field' : '';
+    return this.form.get(word).hasError('required') ? 'A mandotatory field'
+      : this.form.get(word).hasError('notLatin') ? 'The field should contain Latin symbols' : '';
   }
 }

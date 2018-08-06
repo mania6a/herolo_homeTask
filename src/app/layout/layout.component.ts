@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ServerService} from '../services/server.service';
 import {Book} from '../models/book';
-import {MatDialog, MatSnackBar} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {EditDialogComponent} from './edit-dialog/edit-dialog.component';
+import {CheckBookService} from '../services/check-book.service';
+import {ShowErrorService} from '../services/show-error.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,22 +15,16 @@ export class LayoutComponent implements OnInit {
 
   books: Array<Book>;
   constructor(private server: ServerService,
+              private checkBook: CheckBookService,
               private dialog: MatDialog,
-              private snack: MatSnackBar) { }
+              private showError: ShowErrorService) { }
 
   ngOnInit() {
     this.server.getBooks().subscribe((response: Array<Book>) => {
       this.books = response;
     }, (error => {
-      this.showError(error.message);
+      this.showError.showError(error.message);
     }));
-  }
-
-  showError(message) {
-    this.snack.open(message, '', {
-      duration: 3000,
-      panelClass: 'error'
-    });
   }
 
   deleteBook(ind) {
@@ -36,20 +32,15 @@ export class LayoutComponent implements OnInit {
   }
 
   addBook() {
-    let exists = false;
     const dislogRef = this.dialog.open(EditDialogComponent, {});
     dislogRef.afterClosed().subscribe((data: Book) => {
-    this.books.forEach((b) => {
-        if (b.title.toLowerCase().localeCompare(data.title.toLowerCase()) === 0) {
-          exists = true;
-          this.showError('The book ' + data.title + ' already exists');
-        }
-    });
-    if (!exists) {
-      data.id = this.books[this.books.length - 1].id + 1;
+      const exists = this.checkBook.ifExists(this.books.map((b) => b.title), data.title);
+      if (exists) {
+        this.showError.showError('The book ' + data.title + ' already exists');
+      } else {
+      data.id = this.books.length ? (this.books[this.books.length - 1].id + 1) : 100000;
       this.books.push(data);
     }
     });
   }
-
 }

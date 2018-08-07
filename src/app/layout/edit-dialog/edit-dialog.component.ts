@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {Book} from '../../models/book';
+import {CheckBookService} from '../../services/check-book.service';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -12,7 +13,8 @@ export class EditDialogComponent implements OnInit {
   form: FormGroup;
   maxDate = new Date();
   constructor(private dialogRef: MatDialogRef<EditDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Book) { }
+              @Inject(MAT_DIALOG_DATA) public data: Book,
+              private checkBook: CheckBookService) { }
 
   ngOnInit() {
    // const title = this.data ? this.transformWord(this.data.title) : '';
@@ -43,9 +45,9 @@ export class EditDialogComponent implements OnInit {
     return null;
   }
 
- /*
-    The method is used in case we want to see a correct title/ author name like with pipe
-    transformWord(title) {
+
+ //   The method is used in case we want to see a correct title/ author name like with pipe
+    /*transformWord(title) {
     const wordArray = title.trim().split(' ');
     const res = wordArray.map(e => {
       const word = e.match(/[A-Z, a-z]/g).join('');
@@ -57,11 +59,12 @@ export class EditDialogComponent implements OnInit {
   saveChanges() {
     const book = {
       'id': this.data ? this.data.id : '',
-      'title': this.form.get('title').value.trim(),
-      'authorName': this.form.get('authorName').value.trim(),
+      'title': this.checkBook.transformWord(this.form.get('title').value),
+      'authorName': this.checkBook.transformWord(this.form.get('authorName').value),
       'publishedDate': this.form.get('publishedDate').value.toLocaleString().slice(0, 10)
         .split('/').join('.')
     };
+    console.log(book);
     this.dialogRef.close(book);
   }
 

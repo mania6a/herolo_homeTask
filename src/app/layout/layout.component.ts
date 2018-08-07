@@ -34,12 +34,14 @@ export class LayoutComponent implements OnInit {
   addBook() {
     const dislogRef = this.dialog.open(EditDialogComponent, {});
     dislogRef.afterClosed().subscribe((data: Book) => {
+      if (data) {
       const exists = this.checkBook.ifExists(this.books.map((b) => b.title), data.title);
       if (exists) {
         this.showError.showError('The book ' + data.title + ' already exists');
       } else {
-      data.id = this.books.length ? (this.books[this.books.length - 1].id + 1) : 100000;
-      this.books.push(data);
+        data.id = this.books.length ? (this.books[this.books.length - 1].id + 1) : 100000;
+        this.books.push(data);
+      }
     }
     });
   }

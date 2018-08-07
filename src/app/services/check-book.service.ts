@@ -15,11 +15,13 @@ export class CheckBookService {
 
   transformWord(title) {
     const wordArray = title.trim().split(' ');
-    const res = wordArray.map(e => {
-      const word = e.match(/[A-Z, a-z]/g).join('');
-      return word.toLowerCase();
+    const res = [];
+    wordArray.forEach(e => {
+      if (e !== '') {
+        const word = e.match(/[A-Z, a-z]/g).join('');
+        res.push(word.toLowerCase());
+      }
     });
-    console.log(res);
     return res.join(' ');
   }
 }

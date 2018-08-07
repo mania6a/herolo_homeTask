@@ -45,17 +45,6 @@ export class EditDialogComponent implements OnInit {
     return null;
   }
 
-
- //   The method is used in case we want to see a correct title/ author name like with pipe
-    /*transformWord(title) {
-    const wordArray = title.trim().split(' ');
-    const res = wordArray.map(e => {
-      const word = e.match(/[A-Z, a-z]/g).join('');
-      return word.charAt(0).toUpperCase().concat(word.slice(1)).trim();
-    });
-    return res.join(' ');
-  }*/
-
   saveChanges() {
     const book = {
       'id': this.data ? this.data.id : '',
@@ -64,7 +53,6 @@ export class EditDialogComponent implements OnInit {
       'publishedDate': this.form.get('publishedDate').value.toLocaleString().slice(0, 10)
         .split('/').join('.')
     };
-    console.log(book);
     this.dialogRef.close(book);
   }
 

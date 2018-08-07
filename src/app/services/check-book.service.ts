@@ -17,7 +17,8 @@ export class CheckBookService {
     const wordArray = title.trim().split(' ');
     const res = [];
     wordArray.forEach(e => {
-      if (e !== '') {
+      if (e !== '' && !e.match(/[0-9]/g)) {
+        console.log(e);
         const word = e.match(/[A-Z, a-z]/g).join('');
         res.push(word.toLowerCase());
       }

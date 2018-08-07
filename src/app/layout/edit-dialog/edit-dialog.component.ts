@@ -37,7 +37,7 @@ export class EditDialogComponent implements OnInit {
   }
 
   notContLatin(word: FormControl) {
-    if (!word.value.match(/[A-Z, a-z]/g)) {
+    if (!word.value.match(/[A-Z,a-z]/g)) {
       return {
         'notLatin': true
       };

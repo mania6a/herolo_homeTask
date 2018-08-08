@@ -30,7 +30,6 @@ export class LayoutComponent implements OnInit {
           publishedDate: item.volumeInfo.publishedDate
         };
       });
-      console.log(this.books);
     }, (error => {
       this.showError.showError(error.message);
     }));

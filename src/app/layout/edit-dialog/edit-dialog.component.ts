@@ -30,8 +30,7 @@ export class EditDialogComponent implements OnInit {
     }
     const date = this.data ? d : '';
     this.form = new FormGroup({
-      'title': new FormControl(title, [Validators.required,
-        this.notContLatin.bind(this)]),
+      'title': new FormControl(title, [Validators.required, this.notContLatin.bind(this)]),
       'authorName': new FormControl(author, [Validators.required,
         this.notContLatin.bind(this)]),
       'publishedDate': new FormControl(date, [Validators.required])

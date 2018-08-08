@@ -1,10 +1,11 @@
 <form [formGroup] = "form">
   <mat-form-field>
-    <input type="text" matInput formControlName="title" placeholder="Enter a title">
+    <input type="text" maxlength="60"
+           matInput formControlName="title" placeholder="Enter a title">
     <mat-error>{{getErrorMessage('title')}}</mat-error>
   </mat-form-field><br>
   <mat-form-field>
-    <input type="text" matInput formControlName="authorName" placeholder="Enter an author name">
+    <input type="text" maxlength="60" matInput formControlName="authorName" placeholder="Enter an author name">
     <mat-error>{{getErrorMessage('authorName')}}</mat-error>
   </mat-form-field><br>
   <mat-form-field>

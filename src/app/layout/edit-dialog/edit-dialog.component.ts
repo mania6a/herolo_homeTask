@@ -19,12 +19,14 @@ export class EditDialogComponent implements OnInit {
   ngOnInit() {
    // const title = this.data ? this.transformWord(this.data.title) : '';
     const title = this.data ? this.data.title : '';
-    const author = this.data ? this.data.authorName : '';
+    const author = this.data ? this.data.authorName.toString() : '';
     const d = new Date();
     if (this.data) {
-      d.setDate(+this.data.publishedDate.split('.')[0]);
-      d.setMonth(+this.data.publishedDate.split('.')[1] - 1);
-      d.setFullYear(+this.data.publishedDate.split('.')[2]);
+      d.setFullYear(+this.data.publishedDate.split('-')[0]);
+      d.setMonth(this.data.publishedDate.length === 4 ? 0 :
+        +this.data.publishedDate.split('-')[1] - 1);
+      d.setDate(this.data.publishedDate.length === 4 || 7 ? 1 :
+        +this.data.publishedDate.split('-')[2]);
     }
     const date = this.data ? d : '';
     this.form = new FormGroup({
@@ -51,7 +53,7 @@ export class EditDialogComponent implements OnInit {
       'title': this.checkBook.transformWord(this.form.get('title').value),
       'authorName': this.checkBook.transformWord(this.form.get('authorName').value),
       'publishedDate': this.form.get('publishedDate').value.toLocaleString().slice(0, 10)
-        .split('/').join('.')
+        .split('/').reverse().join('-')
     };
     this.dialogRef.close(book);
   }

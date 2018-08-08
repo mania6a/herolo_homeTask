@@ -6,10 +6,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ServerService {
 
-  url = 'http://localhost:3000';
+ // url = 'http://localhost:3000';
+  url = 'https://www.googleapis.com/books/v1/volumes?q=quilting';
   constructor(private http: HttpClient) { }
 
   getBooks() {
-    return this.http.get(this.url + '/books');
+    return this.http.get(this.url + '&startIndex=0&maxResults=40');
   }
 }

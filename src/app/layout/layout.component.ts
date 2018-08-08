@@ -20,8 +20,17 @@ export class LayoutComponent implements OnInit {
               private showError: ShowErrorService) { }
 
   ngOnInit() {
-    this.server.getBooks().subscribe((response: Array<Book>) => {
-      this.books = response;
+    this.server.getBooks().subscribe((response: Array<any>) => {
+
+      this.books = response['items'].map((item) => {
+        return {
+          id: item.id,
+          title: item.volumeInfo.title,
+          authorName: item.volumeInfo.authors,
+          publishedDate: item.volumeInfo.publishedDate
+        };
+      });
+      console.log(this.books);
     }, (error => {
       this.showError.showError(error.message);
     }));

@@ -9,8 +9,8 @@ export class WordFormatPipe implements PipeTransform {
     const wordArray = value.trim().split(' ');
     const res = [];
     wordArray.forEach(e => {
-      if (e !== '') {
-        const word = e.match(/[A-Z, a-z]/g).join('');
+      if (e !== '' && e.match(/[A-Z,a-z,0-9]/g)) {
+        const word = e.match(/[A-Z,a-z,0-9]/g).join('');
         res.push(word.charAt(0).toUpperCase().concat(word.slice(1)));
       }
     });
